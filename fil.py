@@ -8,7 +8,7 @@ from telethon.sync import functions
 from user_agent import generate_user_agent
 import requests
 from user_agent import *
-from help import *
+from new import *
 from config import *
 from threading import Thread
 import datetime
