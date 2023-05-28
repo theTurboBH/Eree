@@ -11,6 +11,7 @@ from user_agent import *
 from help import *
 from config import *
 from threading import Thread
+import datetime
 
 a = 'qwertyuiopassdfghjklzxcvbnm'
 b = '1234567890'
@@ -282,8 +283,11 @@ turbo ⤷ @turboBH
                     with open("banned.txt", "a") as f:
                         f.write(f"\n{username}")
                 except Exception as eee:
-                    await turbo.send_message(event.chat_id, f'''error with {username}
+                    msg = await turbo.send_message(event.chat_id, f'''error with {username}
                     {str(eee)}''')
+                    if "The username is already taken (caused by UpdateUsernameRequest)" in msg: 
+                        N = datetime.datetime.now()
+                        await event.edit(f"{username} خاصيه \n الوقت هو {N}") 
                     if "A wait of" in str(eee):
                         break
                     else:
