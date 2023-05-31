@@ -248,8 +248,8 @@ async def _(event):
         isclaim.clear()
         isclaim.append("on")
         msg = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 2)
-        ch = str(msg[2])
-        choice = str(msg[1])
+        ch = str(msg[1])
+        choice = str(msg[0])
         trys = 0
         await event.edit(f"**Ok I will check  `{choice}` from the user  `{ch}` , by number  `{msg[0]}` of attempts !**")
 
@@ -264,7 +264,7 @@ async def _(event):
                     await event.edit("mistake")
             else:
                 pass
-        for i in range(int(msg[0])):
+        for i in range(818181):
             if ispay2[0] == 'no':
                 break
             username = ""
@@ -282,7 +282,7 @@ async def _(event):
                         channel=ch, username=username))
                     await turbo.send_file(event.chat_id, 'https://t.me/jc_ksa/17', caption=f'''Leader : @AbnBashar
 User ⤷ @{username}
-Save ⤷ Flod - turbo
+Save ⤷ ch
 Clicks ⤷ {trys}
 turbo ⤷ @turboBH
 ''')
@@ -316,3 +316,50 @@ turbo ⤷ @turboBH
         await event.client.send_message(event.chat_id, "")
     else:
         await event.edit("")
+        
+@turbo.on(events.NewMessage(outgoing=True, pattern=r"تثبيت"))
+async def _(event):
+    if ispay2[0] == "yes":
+        trys = 0
+        msg = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
+        if msg[0] == "قناة":
+            isauto.clear()
+            isauto.append("on")
+            msg = ("".join(event.text.split(maxsplit=2)[2:])).split(" ", 2)
+            username = str(msg[1])
+            ch = str(msg[0])
+            await turbo.send_message(event.chat_id, f"Started successfully → `{ch}`")
+            for i in range(15000000):
+                if ispay2[0] == 'no':
+                    break
+                t = Thread(target=lambda q, arg1: q.put(
+                    check_user(arg1)), args=(que, username))
+                t.start()
+                t.join()
+                isav = que.get()
+                if "Available" in isav:
+                    try:
+                        await turbo(functions.channels.UpdateUsernameRequest(
+                            channel=ch, username=username))
+                        trys += 12
+                        await turbo.send_file(event.chat_id, 'https://t.me/jc_ksa/17', caption=f'''Leader : @AbnBashar
+User ⤷ @{username}
+Save ⤷ Channel
+Clicks ⤷ {trys}
+turbo ⤷ @turboBH''')
+                        break
+                    except telethon.errors.rpcerrorlist.UsernameInvalidError:
+                        await event.client.send_message(event.chat_id, f"band the @{username} ")
+                    except Exception as eee:
+                    	await turbo.send_message(event.chat_id, f'''{username}
+- {str(eee)} -''')
+                    if "A wait of" in str(eee):
+                        break
+                else: 
+                    pass
+                trys += 1
+
+            trys = ""
+            isauto.clear()
+            isauto.append("off")
+            await turbo.send_message(event.chat_id, "done ⤷ 1")
