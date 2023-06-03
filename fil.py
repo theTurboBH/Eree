@@ -228,21 +228,18 @@ def gen_user(choice):
             pass
     return username
 
-@turbo.on(events.NewMessage(outgoing=True, pattern=r"\.تشيكر"))
+@turbo.on(events.NewMessage(outgoing=True, pattern=r"تشيكر"))
 async def _(event):
     if ispay2[0] == "yes":
         await event.edit(tele_checker)
-    else:
-        await event.edit("بيو")
-
-@turbo.on(events.NewMessage(outgoing=True, pattern=r"\.الانواع"))
+    
+@turbo.on(events.NewMessage(outgoing=True, pattern=r"الانواع"))
 async def _(event):
     if ispay2[0] == "yes":
         await event.edit(tele_checker2)
     else:
-        await event.edit("بيو")
-
-@turbo.on(events.NewMessage(outgoing=True, pattern=r"\.صيد (.*)"))
+        
+@turbo.on(events.NewMessage(outgoing=True, pattern=r"صيد"))
 async def _(event):
     if ispay2[0] == "yes":
         isclaim.clear()
@@ -251,7 +248,7 @@ async def _(event):
         ch = str(msg[1])
         choice = str(msg[0])
         trys = 0
-        await event.edit(f"**Ok I will check  `{choice}` from the user  `{ch}` , by number  `{msg[0]}` of attempts !**")
+        await event.edit(f"**Ok I will check  `{choice}` from the user  `{ch}`**")
 
         @turbo.on(events.NewMessage(outgoing=True, pattern=r"الصيد"))
         async def _(event):
